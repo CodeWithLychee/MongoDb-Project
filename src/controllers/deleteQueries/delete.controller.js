@@ -2,21 +2,20 @@ import { Movie } from "../../models/movie.model.js";
 import { Genre } from "../../models/genre.model.js";
 
 const deleteAllMovies = async (req, res) => {
-  try {
-    // const deletedMovies = Movie.deleteMany({});
-
-    res.status(200).json({
-      // no_of_movies_deleted: deletedMovies.deletedCount,
-      message: "All movies are deleted succesfully from the database",
-    });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  // try {
+  //   const deletedMovies = Movie.deleteMany({});
+  //   res.status(200).json({
+  //     no_of_movies_deleted: deletedMovies.deletedCount,
+  //     message: `All movies are deleted succesfully from the database ${deletedMovies.deletedCount}`,
+  //   });
+  // } catch (error) {
+  //   res.status(500).json({ error: error.message });
+  // }
 };
 
 const deleteByName = async (req, res) => {
   try {
-    const { name } = req.params;
+    const { name } = req.body;
 
     const deletedMovie = await Movie.deleteOne({ original_title: name });
 
@@ -36,7 +35,7 @@ const deleteByName = async (req, res) => {
 
 const deleteMovieByLowRatingAndPopularity = async (req, res) => {
   try {
-    const { rating, popularity } = req.query;
+    const { rating, popularity } = req.body;
     const deletedMovies = await Movie.deleteMany({
       $and: [
         {
@@ -81,7 +80,7 @@ const deleteAdultMovies = async (req, res) => {
 
 const deleteMoviesBeforeYear = async (req, res) => {
   try {
-    const { year, month, day } = req.query;
+    const { year, month, day } = req.body;
 
     const deletedMovies = await Movie.deleteMany({
       release_date: { $lt: `${year}-${month}-${day}` },
