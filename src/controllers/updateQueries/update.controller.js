@@ -1,6 +1,7 @@
 import { Movie } from "../../models/movie.model.js";
 
 const addNewMovie = async (req, res) => {
+  const randomId = Math.floor(1000000 + Math.random() * 9000000);
   try {
     const {
       adult, //true or false
@@ -23,6 +24,7 @@ const addNewMovie = async (req, res) => {
     console.log(req.body);
 
     const movie = await Movie.create({
+      id: randomId,
       adult, //true or false
       backdrop_path: "/fTrQsdMS2MUw00RnzH0r3JWHhts.jpg",
       belongs_to_collection: null,
@@ -88,7 +90,7 @@ const increaseMoviePopularity = async (req, res) => {
     const { title, popularityValue } = req.body;
 
     const updatedMovie = await Movie.findOneAndUpdate(
-      { original_title: title },
+      { $or: [{ original_title: title }, { title: title }] },
       { $inc: { popularity: popularityValue } },
       { new: true }
     );
@@ -111,7 +113,7 @@ const updateMovieTitleById = async (req, res) => {
 
     const updatedMovie = await Movie.findOneAndUpdate(
       { id },
-      { original_title: newTitle },
+      { title: newTitle },
       { new: true }
     );
 

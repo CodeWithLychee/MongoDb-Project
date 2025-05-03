@@ -17,7 +17,7 @@ const getAllMovies = async (req, res) => {
 
 const getMovieByTitle = async (req, res) => {
   try {
-    const { title } = req.body;
+    const { title } = req.query;
 
     const regex = new RegExp(title, "i");
     //let say title = work
@@ -40,7 +40,7 @@ const getMovieByTitle = async (req, res) => {
 
 const getMovieById = async (req, res) => {
   try {
-    const { id } = req.body;
+    const { id } = req.query;
 
     const movie = await Movie.find({ id });
 

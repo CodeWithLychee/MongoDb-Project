@@ -22,15 +22,28 @@ import {
   updateMovieTitleById,
   updateRatingByGenre,
 } from "../controllers/updateQueries/update.controller.js";
+import {
+  addUniqueGenre,
+  findByCountry,
+  findByGenre,
+  getMoviesByAllCountries,
+  getMoviesByCountries,
+  getMoviesByCountrySize,
+  getMoviesByGenreDetails,
+  getMoviesWithSlicedGenres,
+  popGenre,
+  pushGenre,
+  removeGenre,
+} from "../controllers/arrayQueries/Array.controller.js";
 
 const router = Router();
 
 //1) Find routes
 router.route("/find/all").get(getAllMovies);
-router.route("/find/id").get(getMovieById);
 router.route("/find/title").get(getMovieByTitle);
-router.route("/find/language").get(getMovieByLanguage);
-router.route("/find/genre").get(getMoviesByGenre);
+router.route("/find/id").get(getMovieById);
+router.route("/find/language").post(getMovieByLanguage);
+router.route("/find/genre").post(getMoviesByGenre);
 
 //2) Delete Routes
 router.route("/delete/all").delete(deleteAllMovies);
@@ -52,4 +65,14 @@ router.route("/update/title").post(updateMovieTitleById);
 router.route("/update/rating-by-genre").post(updateRatingByGenre);
 router.route("/update/adultMovies").post(markAdultForXXXMovies);
 
+//4) Updates Routes
+router.route("/array/get/by-countries").post(getMoviesByCountries);
+router.route("/array/get/by-all-countries").post(getMoviesByAllCountries);
+router.route("/array/get/by-genre-details").post(getMoviesByGenreDetails);
+router.route("/array/get/by-country-size").post(getMoviesByCountrySize);
+router.route("/array/get/sliced-genres/:count").get(getMoviesWithSlicedGenres);
+router.route("/array/add-unique-genre").post(addUniqueGenre);
+router.route("/array/push-genre").post(pushGenre);
+router.route("/array/remove-genre").post(removeGenre);
+router.route("/array/pop-genre").post(popGenre);
 export default router;
