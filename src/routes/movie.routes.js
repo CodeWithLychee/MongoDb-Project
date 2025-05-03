@@ -24,8 +24,6 @@ import {
 } from "../controllers/updateQueries/update.controller.js";
 import {
   addUniqueGenre,
-  findByCountry,
-  findByGenre,
   getMoviesByAllCountries,
   getMoviesByCountries,
   getMoviesByCountrySize,

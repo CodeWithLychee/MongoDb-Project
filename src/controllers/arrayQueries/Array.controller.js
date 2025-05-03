@@ -84,7 +84,7 @@ const addUniqueGenre = async (req, res) => {
   const { id, genre } = req.body; // e.g., id: "movieId", genre: { id: 35, name: "Comedy" }
 
   try {
-    await Movie.updateOne({ _id: id }, { $addToSet: { genres: genre } });
+    await Movie.updateOne({ id: id }, { $addToSet: { genres: genre } });
     res.json({ message: "Genre added if not already present" });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -95,7 +95,7 @@ const pushGenre = async (req, res) => {
   const { id, genre } = req.body;
 
   try {
-    await Movie.updateOne({ _id: id }, { $push: { genres: genre } });
+    await Movie.updateOne({ id: id }, { $push: { genres: genre } });
     res.json({ message: "Genre pushed into array" });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -106,7 +106,7 @@ const removeGenre = async (req, res) => {
   const { id, genreId } = req.body;
 
   try {
-    await Movie.updateOne({ _id: id }, { $pull: { genres: { id: genreId } } });
+    await Movie.updateOne({ id: id }, { $pull: { genres: { id: genreId } } });
     res.json({ message: "Genre removed from array" });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -121,7 +121,7 @@ const popGenre = async (req, res) => {
       message: "Please enter 1 → last, -1 → first",
     });
   try {
-    await Movie.updateOne({ _id: id }, { $pop: { genres: direction } });
+    await Movie.updateOne({ id: id }, { $pop: { genres: direction } });
     res.json({ message: "First or last genre popped" });
   } catch (err) {
     res.status(500).json({ error: err.message });
