@@ -26,6 +26,9 @@ function TopBar() {
       <a href="/queries" className="font-bold hover:underline">
         MongoDbQueries
       </a>
+      <a href="/aihelp" className="font-bold hover:underline">
+        Ai Help
+      </a>
       <a href="/about" className="font-bold hover:underline">
         About Us
       </a>

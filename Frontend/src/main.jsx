@@ -22,6 +22,15 @@ import Third from "./Pages/UpdateQueries/Third/Third.jsx";
 import Fourth from "./Pages/UpdateQueries/Fourth/Fourth.jsx";
 import Fifth from "./Pages/UpdateQueries/Fifth/Fifth.jsx";
 import Sixth from "./Pages/UpdateQueries/Sixth/Sixth.jsx";
+import AiHelp from "./Pages/AiHelp.jsx";
+import FirstSecond from "./Pages/ArrayQueries/FirstSecond.jsx";
+import ThirdElemMatch from "./Pages/ArrayQueries/ThirdElemMatch.jsx";
+import FourthSize from "./Pages/ArrayQueries/FourthSize.jsx";
+import FifthSlice from "./Pages/ArrayQueries/FifthSlice.jsx";
+import SixthAddToSet from "./Pages/ArrayQueries/SixthAddToSet.jsx";
+import SeventhPush from "./Pages/ArrayQueries/SeventhPush.jsx";
+import EigthPull from "./Pages/ArrayQueries/EigthPull.jsx";
+import NinePop from "./Pages/ArrayQueries/NinePop.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +38,7 @@ const router = createBrowserRouter(
       <Route path="" element={<Home />} />
       <Route path="about" element={<AboutUs />} />
       <Route path="queries" element={<AllQueries />} />
+      <Route path="aihelp" element={<AiHelp />} />
 
       <Route path="findqueries" element={<FindQueries />} />
 
@@ -41,7 +51,17 @@ const router = createBrowserRouter(
       <Route path="mark-adult" element={<Sixth />} />
 
       <Route path="deletequeries" element={<DeleteQueries />} />
+
       <Route path="arrayqueries" element={<ArrayQueries />} />
+      <Route path="compareCountries" element={<FirstSecond />} />
+      <Route path="elemMatch" element={<ThirdElemMatch />} />
+      <Route path="size" element={<FourthSize />} />
+      <Route path="slice" element={<FifthSlice />} />
+      <Route path="addtoset" element={<SixthAddToSet />} />
+      <Route path="push" element={<SeventhPush />} />
+      <Route path="pull" element={<EigthPull />} />
+      <Route path="pop" element={<NinePop />} />
+
       <Route path="aggregationqueries" element={<AggregationQueries />} />
     </Route>
   )

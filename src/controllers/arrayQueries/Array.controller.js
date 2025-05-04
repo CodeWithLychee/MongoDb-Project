@@ -84,8 +84,14 @@ const addUniqueGenre = async (req, res) => {
   const { id, genre } = req.body; // e.g., id: "movieId", genre: { id: 35, name: "Comedy" }
 
   try {
+    const GenreFinder = await Movie.findOne({ id: id, "genres.id": genre.id });
+    if (GenreFinder) {
+      return res.status(200).json({
+        message: "Genre is already present",
+      });
+    }
     await Movie.updateOne({ id: id }, { $addToSet: { genres: genre } });
-    res.json({ message: "Genre added if not already present" });
+    res.json({ message: "Genre added " });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -106,6 +112,12 @@ const removeGenre = async (req, res) => {
   const { id, genreId } = req.body;
 
   try {
+    const findGenre = await Movie.findOne({ id: id, "genres.id": genreId });
+    if (!findGenre) {
+      return res.status(200).json({
+        message: "Genre is not present in the given movie",
+      });
+    }
     await Movie.updateOne({ id: id }, { $pull: { genres: { id: genreId } } });
     res.json({ message: "Genre removed from array" });
   } catch (err) {
@@ -115,14 +127,33 @@ const removeGenre = async (req, res) => {
 
 const popGenre = async (req, res) => {
   const { id, direction } = req.body;
-
-  if (direction != -1 && direction != 1)
+  console.log(id, direction);
+  if (direction !== -1 && direction !== 1) {
     return res.status(400).json({
-      message: "Please enter 1 → last, -1 → first",
+      message: "Please enter 1 (last) or -1 (first) for direction",
     });
+  }
+
   try {
+    const movie = await Movie.findOne({ id: id });
+
+    if (!movie) {
+      return res.status(404).json({
+        message: "Movie not found",
+      });
+    }
+
+    if (!movie.genres || movie.genres.length === 0) {
+      return res.status(400).json({
+        message: "No genres available to pop",
+      });
+    }
+
     await Movie.updateOne({ id: id }, { $pop: { genres: direction } });
-    res.json({ message: "First or last genre popped" });
+
+    res.json({
+      message: direction === 1 ? "Last genre popped" : "First genre popped",
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
