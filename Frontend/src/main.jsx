@@ -31,6 +31,10 @@ import SixthAddToSet from "./Pages/ArrayQueries/SixthAddToSet.jsx";
 import SeventhPush from "./Pages/ArrayQueries/SeventhPush.jsx";
 import EigthPull from "./Pages/ArrayQueries/EigthPull.jsx";
 import NinePop from "./Pages/ArrayQueries/NinePop.jsx";
+import FirstSort from "./Pages/AggregationQueries/FirstSort.jsx";
+import SecondMatch from "./Pages/AggregationQueries/SecondMatch.jsx";
+import ThirdLimit from "./Pages/AggregationQueries/thirdGroup.jsx";
+import FifthGroup from "./Pages/AggregationQueries/FifthGroup.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -63,6 +67,10 @@ const router = createBrowserRouter(
       <Route path="pop" element={<NinePop />} />
 
       <Route path="aggregationqueries" element={<AggregationQueries />} />
+      <Route path="sort" element={<FirstSort />} />
+      <Route path="matchproject" element={<SecondMatch />} />
+      <Route path="limit" element={<ThirdLimit />} />
+      <Route path="group" element={<FifthGroup />} />
     </Route>
   )
 );

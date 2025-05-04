@@ -33,6 +33,12 @@ import {
   pushGenre,
   removeGenre,
 } from "../controllers/arrayQueries/Array.controller.js";
+import {
+  filterAndProjectMovies,
+  getLimitedDocuments,
+  groupAggregation,
+  sortMovies,
+} from "../controllers/aggregationQueries/aggregation.controller.js";
 
 const router = Router();
 
@@ -63,7 +69,7 @@ router.route("/update/title").post(updateMovieTitleById);
 router.route("/update/rating-by-genre").post(updateRatingByGenre);
 router.route("/update/adultMovies").post(markAdultForXXXMovies);
 
-//4) Updates Routes
+//4) Array Routes
 router.route("/array/get/by-countries").post(getMoviesByCountries);
 router.route("/array/get/by-all-countries").post(getMoviesByAllCountries);
 router.route("/array/get/by-genre-details").post(getMoviesByGenreDetails);
@@ -73,4 +79,11 @@ router.route("/array/add-unique-genre").post(addUniqueGenre);
 router.route("/array/push-genre").post(pushGenre);
 router.route("/array/remove-genre").post(removeGenre);
 router.route("/array/pop-genre").post(popGenre);
+
+//5) Aggregation Routes
+router.route("/aggregate/sort").post(sortMovies);
+router.route("/aggregate/match-project").post(filterAndProjectMovies);
+router.route("/aggregate/limit").post(getLimitedDocuments);
+router.route("/aggregate/group").post(groupAggregation);
+
 export default router;

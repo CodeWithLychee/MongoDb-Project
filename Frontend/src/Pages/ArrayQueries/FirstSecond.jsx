@@ -137,20 +137,13 @@ const CompareCountries = () => {
                     alt={movie.original_title}
                     className="w-full h-40 object-cover"
                   />
-                  <div className="p-3 h-200">
-                    <div className="p-3">
-                      <p className="font-semibold text-sm">
-                        {movie.original_title}
-                      </p>
-                      <p className="text-xs text-gray-700 mt-2 font-semibold">
-                        Origin Countries:
-                      </p>
-                      <p className="text-xs text-gray-800">
-                        {movie.origin_country && movie.origin_country.length > 0
-                          ? movie.origin_country.join(", ")
-                          : "Unknown"}
-                      </p>
-                    </div>
+                  <div className="p-3">
+                    <p className="font-semibold text-sm">
+                      {movie.original_title}
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      {movie.origin_country?.join(", ")}
+                    </p>
                   </div>
                 </div>
               ))}

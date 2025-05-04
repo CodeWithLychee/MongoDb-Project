@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PasswordPrompt from "../../Components/PasswordPrompt"; // adjust the import path
+import PasswordPrompt from "../../Components/PasswordPrompt"; // Adjust the import path accordingly
 
 function ArrayQueries() {
   const navigate = useNavigate();
@@ -23,89 +23,112 @@ function ArrayQueries() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center gap-8">
-      <div className="flex items-center justify-between w-130">
-        <p className="text-lg font-semibold">$in , $all Query</p>
-        <button
-          onClick={() => navigate("/compareCountries")}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 ml-10"
-        >
-          Search Movie Based On Country
-        </button>
+    <div className="w-full flex flex-col items-center justify-start gap-8 bg-gray-50 p-8 mt-16">
+      <h1 className="text-3xl font-bold text-blue-600 ">
+        Array Queries in MongoDB
+      </h1>
+
+      <div className="flex flex-col gap-3 w-full max-w-4xl">
+        <div className="flex items-center justify-between w-full bg-white p-4 rounded-lg shadow-md">
+          <p className="text-lg font-semibold text-gray-800">
+            Search Movie Based On Country
+          </p>
+          <button
+            onClick={() => navigate("/compareCountries")}
+            className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition"
+          >
+            $in, $all Query
+          </button>
+        </div>
+
+        <div className="flex items-center justify-between w-full bg-white p-4 rounded-lg shadow-md">
+          <p className="text-lg font-semibold text-gray-800">
+            Search Movie Based On Genre Details
+          </p>
+          <button
+            onClick={() => navigate("/elemMatch")}
+            className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition"
+          >
+            $elemMatch Query
+          </button>
+        </div>
+
+        <div className="flex items-center justify-between w-full bg-white p-4 rounded-lg shadow-md">
+          <p className="text-lg font-semibold text-gray-800">
+            Search Movie Based On Country Size
+          </p>
+          <button
+            onClick={() => navigate("/size")}
+            className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition"
+          >
+            $size Query
+          </button>
+        </div>
+
+        <div className="flex items-center justify-between w-full bg-white p-4 rounded-lg shadow-md">
+          <p className="text-lg font-semibold text-gray-800">
+            Get Movies with Sliced Genre
+          </p>
+          <button
+            onClick={() => navigate("/slice")}
+            className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition"
+          >
+            $slice Query
+          </button>
+        </div>
       </div>
 
-      <div className="flex items-center justify-between w-130">
-        <p className="text-lg font-semibold w-54">$elemMatch Query</p>
-        <button
-          onClick={() => navigate("/elemMatch")}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-        >
-          Search Movie Based On Genre Details
-        </button>
+      <div className="flex flex-col gap-4 w-full max-w-4xl ">
+        <div className="flex items-center justify-between w-full bg-white p-4 rounded-lg shadow-md">
+          <p className="text-lg font-semibold text-gray-800">
+            Add Unique Genre to Movie
+          </p>
+          <button
+            onClick={() => handleProtectedNavigate("/addToSet")}
+            className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition"
+          >
+            $addToSet Query
+          </button>
+        </div>
+
+        <div className="flex items-center justify-between w-full bg-white p-4 rounded-lg shadow-md">
+          <p className="text-lg font-semibold text-gray-800">
+            Push Genre to Movie
+          </p>
+          <button
+            onClick={() => handleProtectedNavigate("/push")}
+            className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition"
+          >
+            $push Query
+          </button>
+        </div>
+
+        <div className="flex items-center justify-between w-full bg-white p-4 rounded-lg shadow-md">
+          <p className="text-lg font-semibold text-gray-800">
+            Pull Genre from Movie
+          </p>
+          <button
+            onClick={() => handleProtectedNavigate("/pull")}
+            className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition"
+          >
+            $pull Query
+          </button>
+        </div>
+
+        <div className="flex items-center justify-between w-full bg-white p-4 rounded-lg shadow-md">
+          <p className="text-lg font-semibold text-gray-800">
+            Pop Genre from Movie
+          </p>
+          <button
+            onClick={() => handleProtectedNavigate("/pop")}
+            className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition"
+          >
+            $pop Query
+          </button>
+        </div>
       </div>
 
-      <div className="flex items-center justify-between w-130">
-        <p className="text-lg font-semibold">$size Query</p>
-        <button
-          onClick={() => navigate("/size")}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-        >
-          Search Movie Based On Country Size
-        </button>
-      </div>
-
-      <div className="flex items-center justify-between w-130">
-        <p className="text-lg font-semibold">$slice Query</p>
-        <button
-          onClick={() => navigate("/slice")}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-        >
-          Get Movies with Sliced Genre
-        </button>
-      </div>
-
-      {/* Protected Buttons Start Here */}
-
-      <div className="flex items-center justify-between w-130">
-        <p className="text-lg font-semibold">$addToSet Query</p>
-        <button
-          onClick={() => handleProtectedNavigate("/addToSet")}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-        >
-          Add Unique Genre to movie
-        </button>
-      </div>
-
-      <div className="flex items-center justify-between w-130">
-        <p className="text-lg font-semibold">$push Query</p>
-        <button
-          onClick={() => handleProtectedNavigate("/push")}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-        >
-          Push Genre to movie
-        </button>
-      </div>
-
-      <div className="flex items-center justify-between w-130">
-        <p className="text-lg font-semibold">$pull Query</p>
-        <button
-          onClick={() => handleProtectedNavigate("/pull")}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-        >
-          Pull Genre from movie
-        </button>
-      </div>
-
-      <div className="flex items-center justify-between w-130">
-        <p className="text-lg font-semibold">$pop Query</p>
-        <button
-          onClick={() => handleProtectedNavigate("/pop")}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-        >
-          Pop Genre from movie based on direction
-        </button>
-      </div>
-
+      {/* Password Prompt Modal */}
       {showPrompt && (
         <PasswordPrompt onSuccess={handleSuccess} onCancel={handleCancel} />
       )}
